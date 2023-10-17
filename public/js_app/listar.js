@@ -13,11 +13,11 @@ $(document).ready(function() {
             {data: 'fecha_nac'},
             {data: null, render: function (data, type, row) {
                 // Combine the first and last names into a single table field
-                return '<a href="/api/pacientes/'+data.id+'/edit">editar</a>';
+                return '<a href="/pacientes/edit/'+data.id+'">editar</a>';
             }},
             {data: null, render: function (data, type, row) {
                 // Combine the first and last names into a single table field
-                return '<a href="/confirm_delete/'+data.id+'">eliminar</a>';
+                return '<a href="/pacientes/delete/'+data.id+'">eliminar</a>';
                 //return '<form method="POST" action="/api/v1/pacientes/'+data.id+'"><input type="hidden" name="_method" value="DELETE" /><button>eliminar</button></form>';
                 //return '<button class="clseliminar" data-id="'+data.id+'">eliminar</button>';
             }}

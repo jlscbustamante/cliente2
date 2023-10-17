@@ -28,8 +28,7 @@
 
 
     <!-- Styles -->
-<!--    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    
+   
     @stack('head')
 </head>
 <body>
@@ -102,8 +101,6 @@
     </script>
 
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js" charset="utf8" type="text/javascript"></script>
-
-<!--    <script src="{{ asset('js/app.js') }}"></script> -->
 
     @stack('scripts')
 </body>

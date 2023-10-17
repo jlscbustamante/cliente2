@@ -1,6 +1,40 @@
 $(document).ready(function() {
     //$(function() {
-    
+
+    var id = document.getElementById('vid').value;
+
+    $.ajax({
+        type: "GET",
+        url: '/api/pacientes/'+id,
+        processData: false,
+        contentType: false,
+        cache: false,
+        //data: pacienteData,
+        success: function(resp) { //Cuando se procese con éxito la petición se ejecutará esta función
+            
+            if (resp.success==true){
+                //alert('se leyo el paciente correctamente.');
+                //$("submit[name='grabar_delete']").prop('disabled', false);
+                var paciente = resp.data;
+
+                $('#nombres').val(paciente.nombres);
+                $('#apellidos').val(paciente.apellidos);
+                $('#tipo_doc').val(paciente.tipo_doc);
+                $('#nro_doc').val(paciente.nro_doc);
+                $('#fecha_nac').val(paciente.fecha_nac);
+                
+            } else {
+                alert('no fue posible leer los datos del paciente.');
+                
+            }
+        },
+        dataType: "json",
+        error: function(err) {
+            console.log(err);
+
+        }
+    });
+
         $("#eliminar_paciente").submit(function(e){
             e.preventDefault();
     
@@ -9,7 +43,7 @@ $(document).ready(function() {
             
             //return false;
     
-            id = document.getElementById('idv').value;            
+            id = document.getElementById('vid').value;            
         
                    
             $.ajax({
@@ -31,7 +65,7 @@ $(document).ready(function() {
 
                         
                     }
-                    window.location.replace("/lista");
+                    window.location.replace("/home");
                 },
                 dataType: "json",
                 error: function(err) {

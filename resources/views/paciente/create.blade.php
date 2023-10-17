@@ -3,9 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-md-1 col-md-offset-9">
+            <div class="top-right links">
+                @if (Auth::check())
+                    <a href="{{ url('/home') }}">Home</a>
+                @else
+                    <a href="{{ url('/login') }}">Login</a>
+                    <a href="{{ url('/register') }}">Register</a>
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Paciente</div>
+                <div class="panel-heading">Registrar Paciente</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('pacientes.store') }}  " id="nuevo_paciente" >
@@ -15,6 +27,8 @@
                             <label for="name" class="col-md-4 control-label">Nombres</label>
 
                             <div class="col-md-6">
+                                
+                                <!-- <input id="apiToken" type="text" class="form-control" name="apiToken" value="dfdfdf"  autofocus> -->
                                 <input id="nombres" type="text" class="form-control" name="nombres" value="{{ old('nombres') }}" required autofocus>
 
                                 @if ($errors->has('nombres'))

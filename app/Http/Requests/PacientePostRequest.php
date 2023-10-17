@@ -7,7 +7,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use Illuminate\Contracts\Validation\Validator;
 
-class UsuarioPostRequest extends FormRequest
+class PacientePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

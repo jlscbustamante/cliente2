@@ -13,7 +13,7 @@ class PacienteController extends Controller
 
     public function __construct()
 	{
-		$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+		//$this->middleware('auth.basic',['only'=>['store','update','destroy']]);
 	}   
     /**
      * Display a listing of the resource.
@@ -79,7 +79,11 @@ class PacienteController extends Controller
     public function show(Paciente $paciente)
     {      
 
-        return response()->json($paciente,200);
+        return response()->json([
+            "success" => true,
+            "message" => "Paciente {$paciente->nro_doc} leído correctamente.",
+            "data" => $paciente
+        ],201);
     }
 
     

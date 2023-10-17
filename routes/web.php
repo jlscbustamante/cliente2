@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/pacientes/create', 'HomeController@create')->name('pacientes.create');
+Route::get('/pacientes/edit/{id}', 'HomeController@edit')->name('pacientes.edit');
+Route::get('/pacientes/delete/{id}', 'HomeController@delete')->name('pacientes.delete');

@@ -1,4 +1,39 @@
 $(document).ready(function() {
+
+    var id = document.getElementById('vid').value;
+
+    $.ajax({
+        type: "GET",
+        url: '/api/pacientes/'+id,
+        processData: false,
+        contentType: false,
+        cache: false,
+        //data: pacienteData,
+        success: function(resp) { //Cuando se procese con éxito la petición se ejecutará esta función
+            
+            if (resp.success==true){
+                //alert('se leyo el paciente correctamente.');
+                //$("submit[name='grabar_delete']").prop('disabled', false);
+                var paciente = resp.data;
+
+                $('#nombres').val(paciente.nombres);
+                $('#apellidos').val(paciente.apellidos);
+                $('#tipo_doc').val(paciente.tipo_doc);
+                $('#nro_doc').val(paciente.nro_doc);
+                $('#fecha_nac').val(paciente.fecha_nac);
+                
+            } else {
+                alert('no fue posible leer los datos del paciente.');
+                
+            }
+        },
+        dataType: "json",
+        error: function(err) {
+            console.log(err);
+
+        }
+    });
+
     
         $("#editar_paciente").submit(function(e){
             e.preventDefault();
@@ -8,7 +43,7 @@ $(document).ready(function() {
             
             //return false;
     
-            id = document.getElementById('id').value;
+            id = document.getElementById('vid').value;
             nombres = document.getElementById('nombres').value;
             apellidos = document.getElementById('apellidos').value;
             tipo_doc = document.getElementById('tipo_doc').value;
@@ -38,10 +73,10 @@ $(document).ready(function() {
                 success: function(resp) { //Cuando se procese con éxito la petición se ejecutará esta función
                     
                     if (resp.success==true){
-                        alert('se creo el paciente correctamente.');
+                        alert('se modificó el paciente correctamente.');
                         //$("submit[name='grabar_delete']").prop('disabled', false);
-                        $("#nuevo_paciente").prop('disabled', true);
-                        
+                        $("#editar_paciente").prop('disabled', true);
+                        window.location.replace("/home");
                     } else {
                         for (const key in resp.data) {
                             //console.log(`${key} -> ${resp.data[key]}`);

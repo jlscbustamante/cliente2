@@ -3,9 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-md-1 col-md-offset-9">
+            <div class="top-right links">
+                @if (Auth::check())
+                    <a href="{{ url('/home') }}">Home</a>
+                @else
+                    <a href="{{ url('/login') }}">Login</a>
+                    <a href="{{ url('/register') }}">Register</a>
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Paciente</div>
+                <div class="panel-heading">Modificar paciente</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" id="editar_paciente" >
@@ -16,8 +28,8 @@
 
                             <div class="col-md-6">                          
                                
-                                <input id="id" type="hidden" class="form-control" name="id" value="{{ $paciente->id }}">
-                                <input id="nombres" type="text" class="form-control" name="nombres" value="{{ $paciente->nombres }}" required autofocus>
+                                <input id="vid" type="hidden" class="form-control" name="vid" value="{{ $id }}">
+                                <input id="nombres" type="text" class="form-control" name="nombres" value="" required autofocus>
 
                                 @if ($errors->has('nombres'))
                                     <span class="help-block">
@@ -31,7 +43,7 @@
                             <label for="name" class="col-md-4 control-label">Apellidos</label>
 
                             <div class="col-md-6">
-                                <input id="apellidos" type="text" class="form-control" name="apellidos" value="{{ $paciente->apellidos }}" required autofocus>
+                                <input id="apellidos" type="text" class="form-control" name="apellidos" value="" required autofocus>
 
                                 @if ($errors->has('apellidos'))
                                     <span class="help-block">
@@ -51,7 +63,7 @@
                             <label for="tipo_doc" class="col-md-4 control-label">Tipo Doc.</label>
 
                             <div class="col-md-6">
-                                <input id="tipo_doc" type="tipo_doc" class="form-control" name="tipo_doc" value="{{ $paciente->tipo_doc }}" required>
+                                <input id="tipo_doc" type="tipo_doc" class="form-control" name="tipo_doc" value="" required>
 
                                 @if ($errors->has('tipo_doc'))
                                     <span class="help-block">
@@ -65,7 +77,7 @@
                             <label for="nro_doc" class="col-md-4 control-label">Nro_doc</label>
 
                             <div class="col-md-6">
-                                <input id="nro_doc" type="nro_doc" class="form-control" name="nro_doc" value="{{ $paciente->nro_doc }}" required>
+                                <input id="nro_doc" type="nro_doc" class="form-control" name="nro_doc" value="" required>
 
                                 @if ($errors->has('nro_doc'))
                                     <span class="help-block">
@@ -79,7 +91,7 @@
                             <label for="fecha_nac" class="col-md-4 control-label">Fecha Nac.</label>
 
                             <div class="col-md-6">
-                                <input id="fecha_nac" type="text" class="form-control" name="fecha_nac" value="{{ $paciente->fecha_nac }}" required autofocus>
+                                <input id="fecha_nac" type="text" class="form-control" name="fecha_nac" value="" required>
 
                                 @if ($errors->has('fecha_nac'))
                                     <span class="help-block">

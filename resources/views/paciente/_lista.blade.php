@@ -63,6 +63,6 @@
 
 @push('scripts')
 <!-- Scripts -->
-<script src="{{ asset('js_app/lista.js')}}"></script>
+<script src="{{ asset('js_app/listar.js')}}"></script>
 @endpush
 @endsection

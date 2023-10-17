@@ -64,4 +64,9 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<!-- Scripts -->
+<script src="{{ asset('js_app/listar.js')}}"></script>
+@endpush
 @endsection

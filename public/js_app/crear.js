@@ -1,6 +1,6 @@
 $(document).ready(function() {
 //$(function() {
-    
+
     $("#nuevo_paciente").submit(function(e){
         e.preventDefault();
 
@@ -25,6 +25,10 @@ $(document).ready(function() {
         pacienteData.append("tipo_doc", tipo_doc);
         pacienteData.append("nro_doc", nro_doc);
         pacienteData.append("fecha_nac", fecha_nac);
+
+        /*
+        'Authorization': 'Bearer ' + Laravel.apiToken,
+        */
         
     
         $.ajax({
@@ -34,12 +38,15 @@ $(document).ready(function() {
             contentType: false,
             cache: false,
             data: pacienteData,
+            // Añade un header:
+            //headers: {'Authorization': 'Bearer '+ Laravel.apiToken},
             success: function(resp) { //Cuando se procese con éxito la petición se ejecutará esta función
                 
                 if (resp.success==true){
                     alert('se creo el paciente correctamente.');
                     //$("submit[name='grabar_delete']").prop('disabled', false);
                     $("#nuevo_paciente").prop('disabled', true);
+                    window.location.replace("/home");
                     
                 } else {
                     for (const key in resp.data) {
@@ -50,6 +57,7 @@ $(document).ready(function() {
                 }
             },
             dataType: "json",
+            
             error: function(err) {
                 console.log(err);
     

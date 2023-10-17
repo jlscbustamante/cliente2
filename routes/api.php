@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });*/
 
 
-Route::group(['middleware' => ['auth']], function () {
-	Route::resource('pacientes', 'Api\V1\PacienteController',['except'=>['edit','create'] ]);
+Route::group(['middleware' => ['auth:api']], function () {
+	
 });
+
+Route::resource('pacientes', 'Api\V1\PacienteController',['except'=>['edit','create'] ]);
