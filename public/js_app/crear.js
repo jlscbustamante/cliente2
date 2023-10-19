@@ -1,19 +1,19 @@
 $(document).ready(function() {
 //$(function() {
 
-    $("#nuevo_paciente").submit(function(e){
+    $("#crear_paciente").on('click',function(e){
         e.preventDefault();
 
-        console.log('Habil');
+        console.log('Crear');
         //$("submit[name='nuevo_paciente']").prop('disabled', true);
         
         //return false;
 
-        nombres = document.getElementById('nombres').value;
-        apellidos = document.getElementById('apellidos').value;
-        tipo_doc = document.getElementById('tipo_doc').value;
-        nro_doc = document.getElementById('nro_doc').value;
-        fecha_nac = document.getElementById('fecha_nac').value;
+        nombres = document.getElementById('c_nombres').value;
+        apellidos = document.getElementById('c_apellidos').value;
+        tipo_doc = document.getElementById('c_tipo_doc').value;
+        nro_doc = document.getElementById('c_nro_doc').value;
+        fecha_nac = document.getElementById('c_fecha_nac').value;
     
         //'nro_doc'=>'required|numeric|digits_between:8,20', 'tipo_doc'=>'required|alpha'
         //, 'nombres'=>'required', 'apellidos'=>'required', 'fecha_nac'=>'required|date_format:Y-m-d'
@@ -44,8 +44,7 @@ $(document).ready(function() {
                 
                 if (resp.success==true){
                     alert('se creo el paciente correctamente.');
-                    //$("submit[name='grabar_delete']").prop('disabled', false);
-                    $("#nuevo_paciente").prop('disabled', true);
+                    $('#create_paciente_modal').modal('hide');
                     window.location.replace("/home");
                     
                 } else {

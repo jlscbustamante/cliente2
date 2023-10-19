@@ -1,9 +1,9 @@
 $(document).ready(function() {
     //$(function() {
 
-    var id = document.getElementById('vid').value;
+    var id = document.getElementById('delete_vid').value;
 
-    $.ajax({
+    /*$.ajax({
         type: "GET",
         url: '/api/pacientes/'+id,
         processData: false,
@@ -33,17 +33,18 @@ $(document).ready(function() {
             console.log(err);
 
         }
-    });
+    });*/
 
-        $("#eliminar_paciente").submit(function(e){
+        //$("#eliminar_paciente").submit(function(e){
+        $("#eliminar_paciente").on('click',function(e){
             e.preventDefault();
     
-            console.log('Habil');
+            console.log('Delete Habil');
             //$("submit[name='nuevo_paciente']").prop('disabled', true);
             
             //return false;
     
-            id = document.getElementById('vid').value;            
+            id = document.getElementById('delete_vid').value;            
         
                    
             $.ajax({
@@ -65,6 +66,7 @@ $(document).ready(function() {
 
                         
                     }
+                    $('#delete_paciente_modal').modal('hide');
                     window.location.replace("/home");
                 },
                 dataType: "json",

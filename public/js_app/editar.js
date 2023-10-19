@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-    var id = document.getElementById('vid').value;
+/*    var id = document.getElementById('vid').value;
+    console.log('id : '+id);
 
     $.ajax({
         type: "GET",
@@ -33,9 +34,10 @@ $(document).ready(function() {
 
         }
     });
-
+*/
     
-        $("#editar_paciente").submit(function(e){
+        $("#editar_paciente").on('click',function(e){
+        //$("#editar_paciente").submit(function(e){
             e.preventDefault();
     
             console.log('Habil');
@@ -43,12 +45,12 @@ $(document).ready(function() {
             
             //return false;
     
-            id = document.getElementById('vid').value;
-            nombres = document.getElementById('nombres').value;
-            apellidos = document.getElementById('apellidos').value;
-            tipo_doc = document.getElementById('tipo_doc').value;
-            nro_doc = document.getElementById('nro_doc').value;
-            fecha_nac = document.getElementById('fecha_nac').value;
+            id = document.getElementById('edit_vid').value;
+            nombres = document.getElementById('e_nombres').value;
+            apellidos = document.getElementById('e_apellidos').value;
+            tipo_doc = document.getElementById('e_tipo_doc').value;
+            nro_doc = document.getElementById('e_nro_doc').value;
+            fecha_nac = document.getElementById('e_fecha_nac').value;
         
             //'nro_doc'=>'required|numeric|digits_between:8,20', 'tipo_doc'=>'required|alpha'
             //, 'nombres'=>'required', 'apellidos'=>'required', 'fecha_nac'=>'required|date_format:Y-m-d'
@@ -74,9 +76,9 @@ $(document).ready(function() {
                     
                     if (resp.success==true){
                         alert('se modificó el paciente correctamente.');
-                        //$("submit[name='grabar_delete']").prop('disabled', false);
-                        $("#editar_paciente").prop('disabled', true);
-                        window.location.replace("/home");
+                        $('#edit_paciente_modal').modal('hide');                        
+                        window.location.replace("/home");                        
+
                     } else {
                         for (const key in resp.data) {
                             //console.log(`${key} -> ${resp.data[key]}`);
@@ -85,14 +87,23 @@ $(document).ready(function() {
                         
                     }
                 },
+                /*complete: function(){                                       
+                    callFunctionAfterAjaxCallComplete();
+                },*/
                 dataType: "json",
                 error: function(err) {
                     console.log(err);
         
                 }
             });
-    
+
             return false;
         });
+
+
+        function callFunctionAfterAjaxCallComplete(){
+            console.log('function has been called');
+        }
+
     
     });

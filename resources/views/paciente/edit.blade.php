@@ -53,12 +53,6 @@
                             </div>
                         </div>
 
-                        {{-- 'nro_doc'=>'required|numeric|digits_between:8,20',
-            'tipo_doc'=>'required|alpha',
-            'nombres'=>'required',
-            'apellidos'=>'required',
-    		'fecha_nac'=>'required|date_format:Y-m-d' --}}
-
                         <div class="form-group{{ $errors->has('tipo_doc') ? ' has-error' : '' }}">
                             <label for="tipo_doc" class="col-md-4 control-label">Tipo Doc.</label>
 
