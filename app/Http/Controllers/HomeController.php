@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function create()
     {
-        $currentUser = Auth::user();
+        //$currentUser = Auth::user();
 
         //dd($currentUser);
 

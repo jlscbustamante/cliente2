@@ -95,23 +95,6 @@ class PacienteController extends Controller
      */
     public function edit(Paciente $paciente)
     {
-        //Si el registro se actualizo correctamente, se devuelve 
-        //el objeto actualizado
-        /*if ($paciente){
-            
-            return response()->json([
-                "success" => true,
-                "message" => "Paciente {$paciente->nro_doc} a actualizar.",
-                "data" => $paciente
-            ],201);
-        }else{
-            return response()->json([
-                "success" => false,
-                "message" => "No existe el paciente",
-                "data" => $paciente
-            ],501);
-        }*/
-
         return view('paciente/edit',compact('paciente'));
     }  
 
@@ -126,12 +109,22 @@ class PacienteController extends Controller
     {
         //$paciente_upd = $request->validated();
 
-       
         $paciente_upd = $request->all();
 
-        //se usa un nuevo array, porque $request->all()
-        //devuelve todos los campos desde el form, incluido el _method 
-        //y eso falla al ejecutarse el update en la BD
+        /*
+        se usa la validacion de la existencia del campo _method,
+        porque $request->all() devuelve todos los campos desde el form, incluido el _method 
+        y produce un error al ejecutarse el update en la BD
+        */
+        if ($request->has('_method')){
+            
+            $modif_paciente = $request->except('_method');
+       }
+
+        /*
+        se usa un nuevo array, porque $request->all()
+        devuelve todos los campos desde el form, incluido el _method 
+        y eso falla al ejecutarse el update en la BD
         $modif_paciente = array();
 
         //$modif_paciente->id=$paciente_upd['nombres'];
@@ -141,6 +134,8 @@ class PacienteController extends Controller
         $modif_paciente['tipo_doc']=$paciente_upd['tipo_doc'];
         $modif_paciente['nro_doc']=$paciente_upd['nro_doc'];
         $modif_paciente['fecha_nac']=$paciente_upd['fecha_nac'];
+
+        */
 
         $paciente_aff_rows = Paciente::where('id', $paciente->id)                
                 ->update($modif_paciente);
