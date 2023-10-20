@@ -77,7 +77,8 @@ $(document).ready(function() {
                     if (resp.success==true){
                         alert('se modificó el paciente correctamente.');
                         $('#edit_paciente_modal').modal('hide');                        
-                        window.location.replace("/home");                        
+                        //window.location.replace("/home");    
+                        $('#lista').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
 
                     } else {
                         for (const key in resp.data) {
@@ -89,6 +90,14 @@ $(document).ready(function() {
                 },
                 /*complete: function(){                                       
                     callFunctionAfterAjaxCallComplete();
+                    
+                    $.getScript( "js_app/lista_datatable.js", function( data, textStatus, jqxhr ) {
+                        //console.log( data ); // Data returned
+                        //console.log( textStatus ); // Success
+                        //console.log( jqxhr.status ); // 200
+                        //console.log( "Load was performed." );
+
+                    });
                 },*/
                 dataType: "json",
                 error: function(err) {

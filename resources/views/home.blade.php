@@ -355,6 +355,7 @@
 @push('scripts')
 <!-- Scripts -->
 <script src="{{ asset('js_app/listar.js')}}"></script>
+
 <script src="{{ asset('js_app/crear.js')}}"></script>
 <script src="{{ asset('js_app/editar.js')}}"></script>
 <script src="{{ asset('js_app/eliminar.js')}}"></script>

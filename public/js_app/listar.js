@@ -95,6 +95,7 @@ $(document).ready(function() {
       })
       //fin de carga de eliminar en modal
 
+      
       var mytable = $('#lista').dataTable({
         //"processing": true,
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -118,5 +119,23 @@ $(document).ready(function() {
             }}
         ]
     });
+
+    $.getScript( "js_app/lista_datatable.js", function( data, textStatus, jqxhr ) {
+        /*console.log( data ); // Data returned
+        console.log( textStatus ); // Success
+        console.log( jqxhr.status ); // 200
+        console.log( "Load was performed." );*/
+        
+    });
+
+    /*
+    Actualiza el datatables
+    Funciono para no tener que recargar toda la pagina
+    
+    function func(){
+        console.log("Ran");
+        $('#lista').DataTable().ajax.reload();
+      }
+      setInterval(func,1000);*/
 
 });

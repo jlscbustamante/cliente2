@@ -45,7 +45,8 @@ $(document).ready(function() {
                 if (resp.success==true){
                     alert('se creo el paciente correctamente.');
                     $('#create_paciente_modal').modal('hide');
-                    window.location.replace("/home");
+                    //window.location.replace("/home");
+                    $('#lista').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
                     
                 } else {
                     for (const key in resp.data) {
