@@ -58,8 +58,9 @@ $(document).ready(function() {
                     
                     if (resp.success==true){
                         alert('se eliminó el paciente correctamente.');
-                       
+                        //window.location.replace("/home");
                         //$("#nuevo_paciente").prop('disabled', true);
+                        $('#lista').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
                         
                     } else {
                         alert('No se pudo eliminar el registro.');
@@ -67,7 +68,7 @@ $(document).ready(function() {
                         
                     }
                     $('#delete_paciente_modal').modal('hide');
-                    window.location.replace("/home");
+                    
                 },
                 dataType: "json",
                 error: function(err) {

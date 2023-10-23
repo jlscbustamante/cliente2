@@ -24,3 +24,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 });
 
 Route::resource('pacientes', 'Api\V1\PacienteController',['except'=>['edit','create'] ]);
+
+Route::resource('actividads', 'ActividadController',['only'=>['store'] ]);
+
+Route::resource('conceptos', 'ConceptoController',['only'=>['store'] ]);

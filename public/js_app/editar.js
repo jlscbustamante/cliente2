@@ -35,6 +35,8 @@ $(document).ready(function() {
         }
     });
 */
+
+        //d_act_vid
     
         $("#editar_paciente").on('click',function(e){
         //$("#editar_paciente").submit(function(e){

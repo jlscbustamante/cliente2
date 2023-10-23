@@ -1,6 +1,30 @@
 
 $(document).ready(function() {
 
+
+    //create_actividad_modal
+
+    
+    //evento show actividad
+
+    $('#create_actividad_modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+        var modal = $(this)
+        modal.find('.modal-title').text('Asignar Actividad : ' + vid)
+        //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
+
+        //var id = document.getElementById('vid').value;
+        console.log('id Pac: '+vid);
+
+      });    
+      
+    //fin evento actvidad modal
+
+    //evento show modal
     $('#edit_paciente_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var vid = button.data('edit_vid') // Extract info from data-* attributes
@@ -47,6 +71,10 @@ $(document).ready(function() {
         });
       });
       //fin de carga de edit en modal
+
+      //$("#edit_paciente_modal").appendTo("body");
+      //$("#delete_actividad_modal").appendTo("body");
+
 
       $('#delete_paciente_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
