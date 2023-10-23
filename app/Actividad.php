@@ -17,7 +17,7 @@ class Actividad extends Model
         ];
 
         public function user()
-  {
-    return $this->belongsTo('App\Models\Paciente');
-  }
+        {
+            return $this->belongsTo('App\Models\Paciente');
+        }
 }

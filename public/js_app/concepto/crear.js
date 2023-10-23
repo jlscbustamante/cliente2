@@ -1,15 +1,15 @@
 $(document).ready(function() {
 //$(function() {
 
-    $("#crear_actividad").on('click',function(e){
+    $("#crear_concepto").on('click',function(e){
         e.preventDefault();
 
-        console.log('Crear actividad');
+        console.log('Crear concepto');
 
-        var nombre = document.getElementById('c_act_nombre').value;
-        var vid = document.getElementById('c1_pac_vid').value;
+        var nombre = document.getElementById('c_con_nombre').value;
+        var vid = document.getElementById('c2_pac_vid').value;
 
-        console.log('Id : '+vid);
+        console.log('Id2 Pac : '+vid);
        
         const pacienteData = new FormData();
     
@@ -24,7 +24,7 @@ $(document).ready(function() {
     
         $.ajax({
             type: "POST",
-            url: '/api/actividads',
+            url: '/api/conceptos',
             processData: false,
             contentType: false,
             cache: false,
@@ -34,8 +34,8 @@ $(document).ready(function() {
             success: function(resp) { //Cuando se procese con éxito la petición se ejecutará esta función
                 
                 if (resp.success==true){
-                    alert('se creo la actividad correctamente.');
-                    $('#create_actividad_modal').modal('hide');
+                    alert('se creo el concepto correctamente.');
+                    $('#create_concepto_modal').modal('hide');
                     //window.location.replace("/home");
                     $('#lista').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
                     
@@ -43,8 +43,7 @@ $(document).ready(function() {
                     for (const key in resp.data) {
                         //console.log(`${key} -> ${resp.data[key]}`);
                         alert(`${key} -> ${resp.data[key]}`)
-                      }
-                    
+                      }                    
                 }
             },
             dataType: "json",

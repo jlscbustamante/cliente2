@@ -25,6 +25,12 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 Route::resource('pacientes', 'Api\V1\PacienteController',['except'=>['edit','create'] ]);
 
+//Route::resource('pacientes', 'Api\V1\PacienteController',['except'=>['edit','create'] ]);
+
 Route::resource('actividads', 'ActividadController',['only'=>['store'] ]);
 
 Route::resource('conceptos', 'ConceptoController',['only'=>['store'] ]);
+
+Route::get('/pacientes/show_by_fecha_atencion/{startDate}/{endDate}', 'Api\V1\PacienteController@show_by_fecha_atencion')->name('pacientes.show_by_fecha_atencion');
+
+Route::post('/pacientes/show_by_filters', 'Api\V1\PacienteController@show_by_filters')->name('pacientes.show_by_filters');

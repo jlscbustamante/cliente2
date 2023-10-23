@@ -2,45 +2,25 @@
 
 @section('content')
 
-<!-- Modal capa 3 actividad-->
-<div class="modal fade" id="create_actividad_modal" tabindex="-1" role="dialog" aria-labelledby="create_actividad_modal_label">
+<!-- Modal concepto-->
+<div class="modal fade" id="create_concepto_modal" tabindex="-1" role="dialog" aria-labelledby="create_concepto_modal_label">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="create_actividad_modal_label">Titulo temp</h4>
+          <h4 class="modal-title" id="create_concepto_modal_label">Titulo temp</h4>
         </div>
         <div class="modal-body">
             <form class="form-horizontal">
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label for="c_act_codigo" class="col-md-4 control-label">Código</label>
+                    <label for="c_con_nombre" class="col-md-4 control-label">Nombre</label>
 
                     <div class="col-md-6">                          
                        
-                        <!-- <input id="d_act_vid" type="hidden" class="form-control" name="d_act_vid" value=""> -->
-                        <input id="c_act_codigo" type="text" class="form-control" name="c_act_codigo" value="" readonly>
-
-                    </div>
-                </div>
-
-                <div class="form-group{{ $errors->has('d_act_vid') ? ' has-error' : '' }}">
-                    <label for="c_act_vid" class="col-md-4 control-label">Descripción</label>
-
-                    <div class="col-md-6">                          
-                       
-                        <!-- <input id="d_act_vid" type="hidden" class="form-control" name="d_act_vid" value=""> -->
-                        <input id="c_act_descripcion" type="text" class="form-control" name="c_act_descripcion" value="" readonly>
-
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="c_act_fecha_nac" class="col-md-4 control-label">Fecha Nac.</label>
-
-                    <div class="col-md-6">
-                        <input id="c_act_fecha_nac" type="text" class="form-control" name="c_act_fecha_nac" value="" readonly>
+                        <input id="c2_pac_vid" type="hidden" class="form-control" name="c2_pac_vid" value="">
+                        <input id="c_con_nombre" type="text" class="form-control" name="c_con_nombre" value="">
 
                     </div>
                 </div>
@@ -49,13 +29,13 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" id="crear_actividad">Crear</button>          
+          <button type="button" class="btn btn-primary" id="crear_concepto">Crear</button>          
         </div>
       </div>
     </div>
   </div>
 
-<!-- Fin de Modal capa 3 actividad-->
+<!-- Fin de Modal concepto-->
 
 <!-- Modal actividad-->
 <div class="modal fade" id="create_actividad_modal" tabindex="-1" role="dialog" aria-labelledby="create_actividad_modal_label">
@@ -70,11 +50,11 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label for="c_act_nombre" class="col-md-4 control-label">ID usuario</label>
+                    <label for="c_act_nombre" class="col-md-4 control-label">Actividad</label>
 
                     <div class="col-md-6">                          
                        
-                        <input id="c_pac_vid" type="hidden" class="form-control" name="c_pac_vid" value="">
+                        <input id="c1_pac_vid" type="hidden" class="form-control" name="c1_pac_vid" value="">
                         <input id="c_act_nombre" type="text" class="form-control" name="c_act_nombre" value="">
 
                     </div>
@@ -318,13 +298,43 @@
 
   <!-- Fin Modal crear -->
 <div class="container">
+
+    <div class="row">
+        <form class="form-grid">
+            <div class="form-group">               
+
+                <label for="f1_fecha_nac" class="col-md-1  col-md-offset-1 control-label">Fecha desde.</label>
+                <div class="col-md-2">                    
+                    <input id="f1_fecha_nac" type="text" class="form-control" name="f1_fecha_nac" value="1995-06-01" >
+
+                </div>
+
+                <label for="f2_fecha_nac" class="col-md-1 control-label">Fecha hasta.</label>
+                <div class="col-md-2">                    
+                    <input id="f2_fecha_nac" type="text" class="form-control" name="f2_fecha_nac" value="1995-08-31" >
+
+                </div>
+
+                <label for="f3_nombre" class="col-md-1 control-label">Nombre</label>
+                <div class="col-md-2">                    
+                    <input id="f3_nombre" type="text" class="form-control" name="f3_nombre" value="Da" >
+
+                </div>
+
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-primary" id="filtrar_fecha_act" >Filtrar</button>            
+                </div>
+            </div>
+
+        </form>
+    </div>
     <div class="row">
         <div class="col-md-2 col-md-offset-10">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_paciente_modal" >Nuevo paciente</button>            
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10 col-md-offset-2">
+        <div class="col-md-11 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
@@ -362,6 +372,12 @@
                                                 <th>
                                                     Borrar
                                                 </th>
+                                                <th>
+                                                    Actividad
+                                                </th>
+                                                <th>
+                                                    Concepto
+                                                </th>
                                                 
                                             </tr>
                                         </thead>
@@ -389,5 +405,6 @@
 <script src="{{ asset('js_app/eliminar.js')}}"></script>
 
 <script src="{{ asset('js_app/actividad/crear.js')}}"></script>
+<script src="{{ asset('js_app/concepto/crear.js')}}"></script>
 @endpush
 @endsection

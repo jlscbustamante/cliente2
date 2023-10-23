@@ -176,4 +176,57 @@ class PacienteController extends Controller
         ],200);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Paciente  $paciente
+     * @return \Illuminate\Http\Response
+     */
+    public function show_by_fecha_atencion($startDate, $endDate)
+    {      
+        $pacientes = Paciente::whereBetween('fecha_nac', [$startDate, $endDate])->get();
+
+        $total_records=$pacientes->count();
+
+        $dataset = array(
+            "echo" => 1,
+            "totalrecords" => $total_records,
+            "totaldisplayrecords" => $total_records,
+            "data" => $pacientes
+        );
+
+        return response()->json($dataset,200);
+    }
+
+    
+    public function show_by_filters(Request $request)
+    {   
+           
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+        $nombre = $request->nombre;
+
+        
+        //, $endDate, $nombre=""
+
+        $pacientes = Paciente::whereBetween('fecha_nac', [$startDate, $endDate])
+                                ->where('nombres', 'like', '%' . $nombre. '%')
+                                ->get();
+
+        $total_records=$pacientes->count();
+
+        //$pacientes = $endDate; 
+        //$total_records = 0;
+        $dataset = array(
+            "echo" => 1,
+            "totalrecords" => $total_records,
+            "totaldisplayrecords" => $total_records,
+            "data" => $pacientes
+        );
+
+        return response()->json($dataset,200);
+    }
+
+    
+
 }

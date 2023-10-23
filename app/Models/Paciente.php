@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Actividad;
+use App\Concepto;
 
 class Paciente extends Model
 {
@@ -21,4 +23,9 @@ class Paciente extends Model
         ,'fecha_nac'       
 
     ];
+
+    public function actividads()
+    {
+        return $this->hasMany(Actividad::class);
+    }
 }
