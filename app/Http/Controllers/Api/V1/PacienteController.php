@@ -200,33 +200,42 @@ class PacienteController extends Controller
 
     
     public function show_by_filters(Request $request)
-    {   
-           
+    {  
         $startDate = $request->startDate;
         $endDate = $request->endDate;
         $nombre = $request->nombre;
-
         
-        //, $endDate, $nombre=""
+        if (($startDate=="")&&($endDate=="")&&($nombre=="")){
+            $dataset = array(
+                "echo" => 1,
+                "totalrecords" => 0,
+                "totaldisplayrecords" => 0,
+                "data" => []
+            );
 
-        $pacientes = Paciente::whereBetween('fecha_nac', [$startDate, $endDate])
-                                ->where('nombres', 'like', '%' . $nombre. '%')
-                                ->get();
+        }else{
+            $startDate = isset($request->startDate)?$request->startDate:date('Y-m-d');
+            $endDate = isset($request->endDate)?$request->endDate:date('Y-m-d');
+            $nombre = isset($request->nombre)?$request->nombre:"";
 
-        $total_records=$pacientes->count();
+            $pacientes = Paciente::whereBetween('fecha_nac', [$startDate, $endDate])
+                                    ->where('nombres', 'like', '%' . $nombre. '%')
+                                    ->get();
 
-        //$pacientes = $endDate; 
-        //$total_records = 0;
-        $dataset = array(
-            "echo" => 1,
-            "totalrecords" => $total_records,
-            "totaldisplayrecords" => $total_records,
-            "data" => $pacientes
-        );
+            $total_records=$pacientes->count();
 
+            //$pacientes = $endDate; 
+            //$total_records = 0;
+            $dataset = array(
+                "echo" => 1,
+                "totalrecords" => $total_records,
+                "totaldisplayrecords" => $total_records,
+                "data" => $pacientes
+            );
+
+        }
+        
         return response()->json($dataset,200);
-    }
-
-    
+    }   
 
 }

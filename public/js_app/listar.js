@@ -2,6 +2,7 @@
 $(document).ready(function() {
 
 
+    /*
     //create_concepto_modal
     $('#create_concepto_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -19,29 +20,34 @@ $(document).ready(function() {
         //var id = document.getElementById('vid').value;
         console.log('id Pac: '+vid);
 
-      });    
+      });    s
       
     //fin evento concepto modal
     
     //evento show actividad
 
-    $('#create_actividad_modal').on('show.bs.modal', function (event) {
+    */
+
+    $('#lista_actividad_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
 
-        var vid = button.data('r1_pac_vid');
+        //r1_pac_vid es el id del paciente en el tag data- del boton Actividad
+        var vid = button.data('r1_pac_vid'); //
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
         var modal = $(this)
-        modal.find('.modal-title').text('Asignar Actividad : ' + vid)
+        modal.find('.modal-title').text('Actividades de paciente : ' + vid)
         //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
-        modal.find('.modal-body input[name="c1_pac_vid"]').val(vid)
+        modal.find('.modal-body input[name="pac_vid"]').val(vid)
 
         //var id = document.getElementById('vid').value;
         console.log('id Pac: '+vid);
 
       });    
+
+      //pac_vid
       
     //fin evento actividad modal
 
@@ -93,8 +99,8 @@ $(document).ready(function() {
       });
       //fin de carga de edit en modal
 
-      //$("#edit_paciente_modal").appendTo("body");
-      //$("#delete_actividad_modal").appendTo("body");
+      $("#edit_paciente_modal").appendTo("body");
+      $("#delete_actividad_modal").appendTo("body");
 
 
       $('#delete_paciente_modal').on('show.bs.modal', function (event) {
@@ -144,9 +150,9 @@ $(document).ready(function() {
       })
       //fin de carga de eliminar en modal
 
-      var f1="1995-06-01";
-      var f2="1995-06-01";
-      var f3="Da";
+      var f1="";//"1995-06-01";
+      var f2="";//"1995-06-01";
+      var f3="";//"Da";
 
       var mytable = $('#lista').dataTable({
         //"processing": true,
@@ -183,7 +189,7 @@ $(document).ready(function() {
             }},
             {data: null, render: function (data, type, row) {
                 // Combine the first and last names into a single table field                
-                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_actividad_modal" data-r1_pac_vid="'+data.id+'">Actividad</button>';
+                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lista_actividad_modal" data-r1_pac_vid="'+data.id+'">Actividad</button>';
                 
             }},
             {data: null, render: function (data, type, row) {
@@ -194,7 +200,6 @@ $(document).ready(function() {
             
         ]
     });
-
 
       $("#filtrar_fecha_act").on('click',function(e){
 
