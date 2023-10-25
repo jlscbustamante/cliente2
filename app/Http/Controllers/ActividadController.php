@@ -125,7 +125,13 @@ class ActividadController extends Controller
      */
     public function destroy(Actividad $actividad)
     {
-        //
+        $actividad->delete();
+    
+        return response()->json([
+            "success" => true,
+            "message" => "Actividad {$actividad->nombre} borrada correctamente.",
+            "data" => $actividad
+        ],200);
     }
 
     public function show_by_filters(Request $request)
@@ -150,7 +156,7 @@ class ActividadController extends Controller
             if ($id_paciente>0){
                 $actividades = Paciente::find($id_paciente)
                             ->actividads()
-                            ->whereBetween('created_at', [$startDate, $endDate])
+                            ->whereBetween('created_at', [$startDate." 00:00:00", $endDate." 23:59:59"])
                             ->get();
 /*                            Actividad::whereBetween('created_at', [$startDate, $endDate])
                                     //->where('nombre', 'like', '%' . $nombre. '%')

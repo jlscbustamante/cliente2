@@ -6,15 +6,15 @@ $(document).ready(function() {
 
         console.log('Crear concepto');
 
-        var nombre = document.getElementById('c_con_nombre').value;
-        var vid = document.getElementById('c2_pac_vid').value;
+        var nombre = document.getElementById('c_cpt_nombre').value;
+        var id_paciente = document.getElementById('c2_pac_vid').value;
 
-        console.log('Id2 Pac : '+vid);
+        console.log('Id : '+id_paciente);
        
         const pacienteData = new FormData();
     
         pacienteData.append("nombre", nombre);
-        pacienteData.append("id_paciente", vid);
+        pacienteData.append("id_paciente", id_paciente);
         
         /*
         'Authorization': 'Bearer ' + Laravel.apiToken,
@@ -37,7 +37,7 @@ $(document).ready(function() {
                     alert('se creo el concepto correctamente.');
                     $('#create_concepto_modal').modal('hide');
                     //window.location.replace("/home");
-                    $('#lista').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
+                    $('#lista_concept').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
                     
                 } else {
                     for (const key in resp.data) {

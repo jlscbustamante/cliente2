@@ -2,9 +2,9 @@
 $(document).ready(function() {
 
 
-    /*
+    
     //create_concepto_modal
-    $('#create_concepto_modal').on('show.bs.modal', function (event) {
+    $('#lista_concepto_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
 
@@ -13,20 +13,17 @@ $(document).ready(function() {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
         var modal = $(this)
-        modal.find('.modal-title').text('Asignar Concepto : ' + vid)
+        modal.find('.modal-title').text('Lista de Conceptos de ID : ' + vid)
         //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
-        modal.find('.modal-body input[name="c2_pac_vid"]').val(vid)
+        modal.find('.modal-body input[name="cpt_pac_vid"]').val(vid)
 
         //var id = document.getElementById('vid').value;
         console.log('id Pac: '+vid);
 
-      });    s
+      });    
       
     //fin evento concepto modal
-    
-    //evento show actividad
-
-    */
+       
 
     $('#lista_actividad_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -100,7 +97,10 @@ $(document).ready(function() {
       //fin de carga de edit en modal
 
       $("#edit_paciente_modal").appendTo("body");
-      $("#delete_actividad_modal").appendTo("body");
+      //$("#lista_actividad_modal").appendTo("body");
+      //$("#lista_concepto_modal").appendTo("body");
+      $("#edit_actividad_modal").appendTo("body");
+      $("#create_concepto_modal").appendTo("body");
 
 
       $('#delete_paciente_modal').on('show.bs.modal', function (event) {
@@ -155,11 +155,14 @@ $(document).ready(function() {
       var f3="";//"Da";
 
       var mytable = $('#lista').dataTable({
+        "searching":false,
+        "bLengthChange": false,
         //"processing": true,
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "aProcessing": true,
         "aServerSide": true,       
         "cache": false,
+        
         //"ajax": "/api/pacientes/show_by_filters/"+f1+"/"+f2+"/"+f3,
         "ajax": 
         {
@@ -194,12 +197,30 @@ $(document).ready(function() {
             }},
             {data: null, render: function (data, type, row) {
                 // Combine the first and last names into a single table field                
-                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create_concepto_modal" data-r2_pac_vid="'+data.id+'">Concepto</button>';
+                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lista_concepto_modal" data-r2_pac_vid="'+data.id+'">Concepto</button>';
                 
             }},            
             
         ]
     });
+
+    //datepickers
+
+    /*
+    $('#f1_fecha_nac').datepicker({
+        useCurrent: false,
+        format: 'dd/mm/yyyy', 
+        todayHighlight: true,
+        autoclose: true,  
+        orientation: "bottom left" 
+    }).on('changeDate',function(e){ 
+        console.log('click sobre fecha_ini_enfermeria');
+        var fechaDesdeIni = $('#fecha_ini_enfermeria').val();
+    
+
+    });
+    */
+    //fin datepickers
 
       $("#filtrar_fecha_act").on('click',function(e){
 

@@ -1,39 +1,29 @@
 $(document).ready(function() {
-
     
-        $("#editar_actividad").on('click',function(e){
+        $("#eliminar_actividad").on('click',function(e){
         //$("#editar_paciente").submit(function(e){
             e.preventDefault();
     
-            console.log('Edit Activ');
-            //$("submit[name='nuevo_paciente']").prop('disabled', true);
+            console.log('Elim Activ');
             
-            //return false;
-    
-            var id = document.getElementById('e_act_vid').value;
-            var nombre = document.getElementById('e_act_nombre').value;
-            var id_paciente = document.getElementById('e_pac_vid').value;
-            
+            var id = document.getElementById('d_act_vid').value;
+            var id_paciente = document.getElementById('d_pac_vid').value;
             const pacienteData = new FormData();
         
-            pacienteData.append("nombre", nombre);
-            pacienteData.append("id_paciente", id_paciente);            
-            pacienteData.append("_method", 'PUT');
                     
             $.ajax({
-                type: "POST",
+                type: "DELETE",
                 url: '/api/actividads/'+id,
                 processData: false,
                 contentType: false,
-                cache: false,
-                data: pacienteData,
+                cache: false,        
                 success: function(resp) { //Cuando se procese con éxito la petición se ejecutará esta función
                     
                     if (resp.success==true){
-                        alert('se modificó la actividad correctamente.');
-                        $('#edit_actividad_modal').modal('hide');                        
+                        alert('se eliminó la actividad correctamente.');
+                        $('#delete_actividad_modal').modal('hide');                        
                         //window.location.replace("/home");    
-                        $('#lista_activ').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina
+                        $('#lista_activ').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
 
                     } else {
                         for (const key in resp.data) {

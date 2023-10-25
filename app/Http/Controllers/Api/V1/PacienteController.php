@@ -218,8 +218,9 @@ class PacienteController extends Controller
             $endDate = isset($request->endDate)?$request->endDate:date('Y-m-d');
             $nombre = isset($request->nombre)?$request->nombre:"";
 
+            //se usa ilike para que la consulta sera case insensitive 
             $pacientes = Paciente::whereBetween('fecha_nac', [$startDate, $endDate])
-                                    ->where('nombres', 'like', '%' . $nombre. '%')
+                                    ->where('nombres', 'ilike', '%' . strtolower($nombre). '%')
                                     ->get();
 
             $total_records=$pacientes->count();

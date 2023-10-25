@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     
-        $("#editar_actividad").on('click',function(e){
+        $("#editar_concepto").on('click',function(e){
         //$("#editar_paciente").submit(function(e){
             e.preventDefault();
     
@@ -10,9 +10,9 @@ $(document).ready(function() {
             
             //return false;
     
-            var id = document.getElementById('e_act_vid').value;
-            var nombre = document.getElementById('e_act_nombre').value;
-            var id_paciente = document.getElementById('e_pac_vid').value;
+            var id = document.getElementById('e_cpt_vid').value;
+            var nombre = document.getElementById('e_cpt_nombre').value;
+            var id_paciente = document.getElementById('e2_pac_vid').value;
             
             const pacienteData = new FormData();
         
@@ -22,7 +22,7 @@ $(document).ready(function() {
                     
             $.ajax({
                 type: "POST",
-                url: '/api/actividads/'+id,
+                url: '/api/conceptos/'+id,
                 processData: false,
                 contentType: false,
                 cache: false,
@@ -30,10 +30,10 @@ $(document).ready(function() {
                 success: function(resp) { //Cuando se procese con éxito la petición se ejecutará esta función
                     
                     if (resp.success==true){
-                        alert('se modificó la actividad correctamente.');
-                        $('#edit_actividad_modal').modal('hide');                        
+                        alert('se modificó la concepto correctamente.');
+                        $('#edit_concepto_modal').modal('hide');                        
                         //window.location.replace("/home");    
-                        $('#lista_activ').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina
+                        $('#lista_concept').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina
 
                     } else {
                         for (const key in resp.data) {

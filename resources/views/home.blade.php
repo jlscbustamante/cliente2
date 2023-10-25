@@ -41,6 +41,12 @@
 @include('actividad.lista') 
 @include('actividad.create') 
 @include('actividad.edit') 
+@include('actividad.delete') 
+
+@include('concepto.lista') 
+@include('concepto.create') 
+@include('concepto.edit') 
+@include('concepto.delete') 
 
 <!-- Modal eliminar-->
 <div class="modal fade" id="delete_paciente_modal" tabindex="-1" role="dialog" aria-labelledby="delete_paciente_modal_label">
@@ -371,6 +377,10 @@
 <script src="{{ asset('js_app/actividad/listar.js')}}"></script>
 <script src="{{ asset('js_app/actividad/crear.js')}}"></script>
 <script src="{{ asset('js_app/actividad/editar.js')}}"></script>
+<script src="{{ asset('js_app/actividad/eliminar.js')}}"></script>
+<script src="{{ asset('js_app/concepto/listar.js')}}"></script>
 <script src="{{ asset('js_app/concepto/crear.js')}}"></script>
+<script src="{{ asset('js_app/concepto/editar.js')}}"></script>
+<script src="{{ asset('js_app/concepto/eliminar.js')}}"></script>
 @endpush
 @endsection

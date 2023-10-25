@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
     //eventos del boton nuevo
-    //create_actividad_modal
+    //create_concepto_modal
 
     var f1="1995-06-01";
     var f2="1995-06-01";
 
-    $('#edit_actividad_modal').on('show.bs.modal', function (event) {
+    $('#edit_concepto_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
 
@@ -15,11 +15,11 @@ $(document).ready(function() {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
         var modal = $(this)
-        modal.find('.modal-title').text('Editar Actividad ID : ' + vid)
-        //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
-        modal.find('.modal-body input[name="e_act_vid"]').val(vid);
-        var pac_vid = $("#pac_vid").val();
-        modal.find('.modal-body input[name="e_pac_vid"]').val(pac_vid);
+        modal.find('.modal-title').text('Editar concepto ID : ' + vid)
+        //modal.find('.modal-body input[name="d_cpt_vid"]').val(vid)
+        modal.find('.modal-body input[name="e_cpt_vid"]').val(vid);
+        var pac_vid = $("#cpt_pac_vid").val();
+        modal.find('.modal-body input[name="e2_pac_vid"]').val(pac_vid);
         //e_pac_vid
         //pac_vid
 
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "GET",
-            url: '/api/actividads/'+vid,
+            url: '/api/conceptos/'+vid,
             processData: false,
             contentType: false,
             cache: false,
@@ -38,12 +38,12 @@ $(document).ready(function() {
                 if (resp.success==true){
                     //alert('se leyo el paciente correctamente.');
                     //$("submit[name='grabar_delete']").prop('disabled', false);
-                    var actividad = resp.data;
+                    var concepto = resp.data;
     
-                    $('#e_act_nombre').val(actividad.nombre);
+                    $('#e_cpt_nombre').val(concepto.nombre);
                                        
                 } else {
-                    alert('no fue posible leer los datos de la actividad.');
+                    alert('no fue posible leer los datos de la concepto.');
                     
                 }
             },
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
     }); //fin edit modal   
 
-    $('#delete_actividad_modal').on('show.bs.modal', function (event) {
+    $('#delete_concepto_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
 
@@ -65,11 +65,11 @@ $(document).ready(function() {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
         var modal = $(this)
-        modal.find('.modal-title').text('Eliminar Actividad ID : ' + vid)
-        //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
-        modal.find('.modal-body input[name="d_act_vid"]').val(vid);
-        var pac_vid = $("#pac_vid").val();
-        modal.find('.modal-body input[name="d_pac_vid"]').val(pac_vid);
+        modal.find('.modal-title').text('Eliminar concepto ID : ' + vid)
+        //modal.find('.modal-body input[name="d_cpt_vid"]').val(vid)
+        modal.find('.modal-body input[name="d_cpt_vid"]').val(vid);
+        var pac_vid = $("#cpt_pac_vid").val();
+        modal.find('.modal-body input[name="d2_pac_vid"]').val(pac_vid);
         //e_pac_vid
         //pac_vid
 
@@ -78,7 +78,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "GET",
-            url: '/api/actividads/'+vid,
+            url: '/api/conceptos/'+vid,
             processData: false,
             contentType: false,
             cache: false,
@@ -88,12 +88,12 @@ $(document).ready(function() {
                 if (resp.success==true){
                     //alert('se leyo el paciente correctamente.');
                     //$("submit[name='grabar_delete']").prop('disabled', false);
-                    var actividad = resp.data;
+                    var concepto = resp.data;
     
-                    $('#d_act_nombre').val(actividad.nombre);
+                    $('#d_cpt_nombre').val(concepto.nombre);
                                        
                 } else {
-                    alert('no fue posible leer los datos de la actividad.');
+                    alert('no fue posible leer los datos de la concepto.');
                     
                 }
             },
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
     }); //fin delete modal   
 
-    $('#create_actividad_modal').on('show.bs.modal', function (event) {
+    $('#create_concepto_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
 
@@ -115,16 +115,16 @@ $(document).ready(function() {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
         var modal = $(this)
-        var pac_vid = $("#pac_vid").val();
+        var pac_vid = $("#cpt_pac_vid").val();
 
-        modal.find('.modal-title').text('Crear Actividad : ')
-        modal.find('.modal-body input[name="c_pac_vid"]').val(pac_vid);
+        modal.find('.modal-title').text('Crear concepto : ')
+        modal.find('.modal-body input[name="c2_pac_vid"]').val(pac_vid);
         
         console.log('create id Pac: '+pac_vid);
 
     }); //fin create modal   
    
-    var mytable_activ = $('#lista_activ').dataTable({
+    var mytable_concept = $('#lista_concept').dataTable({
         //"processing": true,
         "searching":false,
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -135,12 +135,12 @@ $(document).ready(function() {
         //"ajax": "/api/pacientes/show_by_filters/"+f1+"/"+f2+"/"+f3,
         "ajax": 
         {
-            url: '/api/actividads/show_by_filters',
+            url: '/api/conceptos/show_by_filters',
             type: 'POST',
             "data": {
-                startDate: function() { return $('#f1_act_created_at').val() },
-                endDate: function() { return $('#f2_act_created_at').val() },
-                id_paciente : function() { return $('#pac_vid').val() },
+                startDate: function() { return $('#f1_cpt_created_at').val() },
+                endDate: function() { return $('#f2_cpt_created_at').val() },
+                id_paciente : function() { return $('#cpt_pac_vid').val() },
                 }
         },
         
@@ -149,20 +149,20 @@ $(document).ready(function() {
             {data: 'created_at'},
             {data: null, render: function (data, type, row) {
                 // Combine the first and last names into a single table field
-                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_actividad_modal" data-edit_vid="'+data.id+'">Editar</button>';
+                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_concepto_modal" data-edit_vid="'+data.id+'">Editar</button>';
             }},
             {data: null, render: function (data, type, row) {
                 // Combine the first and last names into a single table field                
-                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete_actividad_modal" data-delete_vid="'+data.id+'">Eliminar</button>';
+                return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete_concepto_modal" data-delete_vid="'+data.id+'">Eliminar</button>';
                 
             }},
         ]
     });
 
     //
-    $("#filtrar_act_created_at").on('click',function(e){
+    $("#filtrar_cpt_created_at").on('click',function(e){
 
-        $('#lista_activ').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
+        $('#lista_concept').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
 
     });
 

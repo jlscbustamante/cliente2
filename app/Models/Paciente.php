@@ -28,4 +28,9 @@ class Paciente extends Model
     {
         return $this->hasMany(Actividad::class,'id_paciente');
     }
+
+    public function conceptos()
+    {
+        return $this->hasMany(Concepto::class,'id_paciente');
+    }
 }
