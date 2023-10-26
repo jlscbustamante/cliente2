@@ -1,6 +1,11 @@
 
 $(document).ready(function() {
 
+    $("#edit_paciente_modal").appendTo("body");
+      $("#lista_actividad_modal").appendTo("body");
+      //$("#lista_concepto_modal").appendTo("body");
+      $("#edit_actividad_modal").appendTo("body");
+      $("#create_concepto_modal").appendTo("body");
 
     
     //create_concepto_modal
@@ -8,17 +13,43 @@ $(document).ready(function() {
         var button = $(event.relatedTarget) // Button that triggered the modal
         //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
 
+        
+
         var vid = button.data('r2_pac_vid');
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        if(typeof vid !== "undefined") {
+            var modal = $(this)
+            modal.find('.modal-title').text('Lista de Conceptos de ID : ' + vid)
+            //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
+            modal.find('.modal-body input[name="cpt_pac_vid"]').val(vid)
 
-        var modal = $(this)
-        modal.find('.modal-title').text('Lista de Conceptos de ID : ' + vid)
-        //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
-        modal.find('.modal-body input[name="cpt_pac_vid"]').val(vid)
+            //var id = document.getElementById('vid').value;
+            console.log('id Pac: '+vid);
 
-        //var id = document.getElementById('vid').value;
-        console.log('id Pac: '+vid);
+        }else{
+            console.log("Despues de clic en datepicker");
+        }
+
+        $('#f1_cpt_created_at').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
+            //startDate: today,
+            //endDate: end,
+            autoclose: true,
+            //todayBtn: "linked",            
+            //container: '#lista_actividad_modal modal-body'
+        });
+
+        $('#f2_cpt_created_at').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
+            //startDate: today,
+            //endDate: end,
+            autoclose: true,
+            //todayBtn: "linked",            
+            //container: '#lista_actividad_modal modal-body'
+        });
 
       });    
       
@@ -31,19 +62,52 @@ $(document).ready(function() {
 
         //r1_pac_vid es el id del paciente en el tag data- del boton Actividad
         var vid = button.data('r1_pac_vid'); //
+        
+        if(typeof vid !== "undefined") {
+            console.log("Despues de clic en Boton detalle");
+            var modal = $(this)
+            modal.find('.modal-title').text('Actividades de paciente : ' + vid)
+            //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
+            modal.find('.modal-body input[name="pac_vid"]').val(vid)
+
+            //var id = document.getElementById('vid').value;
+            console.log('id Pac: '+vid);
+            
+        }else{
+            console.log("Despues de clic en datepicker");
+        }
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
-        var modal = $(this)
-        modal.find('.modal-title').text('Actividades de paciente : ' + vid)
-        //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
-        modal.find('.modal-body input[name="pac_vid"]').val(vid)
+        
 
-        //var id = document.getElementById('vid').value;
-        console.log('id Pac: '+vid);
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+        $('#f1_act_created_at').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
+            //startDate: today,
+            //endDate: end,
+            autoclose: true,
+            //todayBtn: "linked",            
+            //container: '#lista_actividad_modal modal-body'
+        });
+
+        $('#f2_act_created_at').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
+            //startDate: today,
+            //endDate: end,
+            autoclose: true,
+            //todayBtn: "linked",            
+            //container: '#lista_actividad_modal modal-body'
+        });
 
       });    
 
+    
       //pac_vid
       
     //fin evento actividad modal
@@ -95,13 +159,6 @@ $(document).ready(function() {
         });
       });
       //fin de carga de edit en modal
-
-      $("#edit_paciente_modal").appendTo("body");
-      //$("#lista_actividad_modal").appendTo("body");
-      //$("#lista_concepto_modal").appendTo("body");
-      $("#edit_actividad_modal").appendTo("body");
-      $("#create_concepto_modal").appendTo("body");
-
 
       $('#delete_paciente_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal

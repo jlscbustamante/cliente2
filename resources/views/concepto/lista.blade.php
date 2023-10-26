@@ -19,13 +19,13 @@
                         <label for="f1_cpt_created_at" class="col-md-2 control-label">Fecha desde</label>
                         <div class="col-md-3">                    
                             <input type="hidden" id="cpt_pac_vid" name="cpt_pac_vid" value=""/>
-                            <input id="f1_cpt_created_at" type="text" class="form-control" name="f1_cpt_created_at" value="2023-10-01" >
+                            <input id="f1_cpt_created_at" type="text" class="form-control" name="f1_cpt_created_at" value="02/10/2023" >
         
                         </div>
         
                         <label for="f2_cpt_created_at" class="col-md-2 control-label">Fecha hasta</label>
                         <div class="col-md-3">                    
-                            <input id="f2_cpt_created_at" type="text" class="form-control" name="f2_cpt_created_at" value="2023-10-25" >
+                            <input id="f2_cpt_created_at" type="text" class="form-control" name="f2_cpt_created_at" value="02/10/2023" >
         
                         </div>
                 

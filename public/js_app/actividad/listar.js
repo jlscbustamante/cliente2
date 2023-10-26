@@ -166,4 +166,10 @@ $(document).ready(function() {
 
     });
 
+    //Zona de   $( '#datepicker' ).datepicker();    
+
+    $('#f2_act_created_at').on('change',function () {
+        $('#lista_activ').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                       
+    });
+
 });

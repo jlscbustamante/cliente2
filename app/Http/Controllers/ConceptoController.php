@@ -145,14 +145,19 @@ class ConceptoController extends Controller
             );
 
         }else{
-            $startDate = isset($request->startDate)?$request->startDate:date('Y-m-d');
-            $endDate = isset($request->endDate)?$request->endDate:date('Y-m-d');
+            $startDate = isset($request->startDate)?$request->startDate:date('d/m/Y',strtotime(date('Y-m-d')));
+            $endDate = isset($request->endDate)?$request->endDate:date('d/m/Y',strtotime(date('Y-m-d')));
             $id_paciente = isset($request->id_paciente)?$request->id_paciente:0;
+
+            $guion_startDate = str_replace('/', '-', $startDate);
+            $guion_endDate = str_replace('/', '-', $endDate);
+            $Ymd_startDate = date('Y-m-d', strtotime($guion_startDate));
+            $Ymd_endDate = date('Y-m-d',strtotime($guion_endDate));
 
             if ($id_paciente>0){
                 $conceptos = Paciente::find($id_paciente)
                             ->conceptos()
-                            ->whereBetween('created_at', [$startDate." 00:00:00", $endDate." 23:59:59"])
+                            ->whereBetween('created_at', [$Ymd_startDate." 00:00:00", $Ymd_endDate." 23:59:59"])
                             ->get();
 /*                            concepto::whereBetween('created_at', [$startDate, $endDate])
                                     //->where('nombre', 'like', '%' . $nombre. '%')

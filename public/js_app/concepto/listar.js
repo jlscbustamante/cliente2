@@ -127,11 +127,13 @@ $(document).ready(function() {
     var mytable_concept = $('#lista_concept').dataTable({
         //"processing": true,
         "searching":false,
+        "bLengthChange": false,
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "aProcessing": true,
         "aServerSide": true,       
         "cache": false,
         autoWidth: false, 
+        
         //"ajax": "/api/pacientes/show_by_filters/"+f1+"/"+f2+"/"+f3,
         "ajax": 
         {
@@ -164,6 +166,10 @@ $(document).ready(function() {
 
         $('#lista_concept').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
 
+    });
+
+    $('#f2_cpt_created_at').on('change',function () {
+        $('#lista_concept').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                       
     });
 
 });
