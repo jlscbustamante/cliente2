@@ -1,20 +1,20 @@
 
 $(document).ready(function() {
 
-    $("#edit_paciente_modal").appendTo("body");
-      $("#lista_actividad_modal").appendTo("body");
-      //$("#lista_concepto_modal").appendTo("body");
+      $("#edit_paciente_modal").appendTo("body");
+      $("#lista_actividad_modal").appendTo("body");      
+      $("#create_actividad_modal").appendTo("body");
       $("#edit_actividad_modal").appendTo("body");
+      $("#delete_actividad_modal").appendTo("body");
+      $("#lista_concepto_modal").appendTo("body");
       $("#create_concepto_modal").appendTo("body");
-
+      $("#edit_concepto_modal").appendTo("body");
+      $("#delete_concepto_modal").appendTo("body");
     
     //create_concepto_modal
     $('#lista_concepto_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
-
         
-
         var vid = button.data('r2_pac_vid');
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -34,20 +34,14 @@ $(document).ready(function() {
         $('#f1_cpt_created_at').datepicker({
             format: "dd/mm/yyyy",
             todayHighlight: true,
-            //startDate: today,
-            //endDate: end,
-            autoclose: true,
-            //todayBtn: "linked",            
+            autoclose: true,            
             //container: '#lista_actividad_modal modal-body'
         });
 
         $('#f2_cpt_created_at').datepicker({
             format: "dd/mm/yyyy",
-            todayHighlight: true,
-            //startDate: today,
-            //endDate: end,
-            autoclose: true,
-            //todayBtn: "linked",            
+            todayHighlight: true,            
+            autoclose: true,            
             //container: '#lista_actividad_modal modal-body'
         });
 
@@ -58,8 +52,7 @@ $(document).ready(function() {
 
     $('#lista_actividad_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        //var vid = $('#c_pac_vid').val(); // Extract info from data-* attributes
-
+        
         //r1_pac_vid es el id del paciente en el tag data- del boton Actividad
         var vid = button.data('r1_pac_vid'); //
         
@@ -67,10 +60,9 @@ $(document).ready(function() {
             console.log("Despues de clic en Boton detalle");
             var modal = $(this)
             modal.find('.modal-title').text('Actividades de paciente : ' + vid)
-            //modal.find('.modal-body input[name="d_act_vid"]').val(vid)
+            
             modal.find('.modal-body input[name="pac_vid"]').val(vid)
-
-            //var id = document.getElementById('vid').value;
+            
             console.log('id Pac: '+vid);
             
         }else{
@@ -79,8 +71,6 @@ $(document).ready(function() {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
-        
-
         var date = new Date();
         var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -88,28 +78,19 @@ $(document).ready(function() {
         $('#f1_act_created_at').datepicker({
             format: "dd/mm/yyyy",
             todayHighlight: true,
-            //startDate: today,
-            //endDate: end,
             autoclose: true,
-            //todayBtn: "linked",            
             //container: '#lista_actividad_modal modal-body'
         });
 
         $('#f2_act_created_at').datepicker({
             format: "dd/mm/yyyy",
-            todayHighlight: true,
-            //startDate: today,
-            //endDate: end,
-            autoclose: true,
-            //todayBtn: "linked",            
+            todayHighlight: true,            
+            autoclose: true,            
             //container: '#lista_actividad_modal modal-body'
         });
 
-      });    
+      });
 
-    
-      //pac_vid
-      
     //fin evento actividad modal
 
     //evento show modal
@@ -170,7 +151,6 @@ $(document).ready(function() {
         modal.find('.modal-title').text('Eliminar paciente ID : ' + vid)
         modal.find('.modal-body input[name="delete_vid"]').val(vid)
 
-        //var id = document.getElementById('vid').value;
         console.log('id : '+vid);
     
         $.ajax({
@@ -263,49 +243,13 @@ $(document).ready(function() {
 
     //datepickers
 
-    /*
-    $('#f1_fecha_nac').datepicker({
-        useCurrent: false,
-        format: 'dd/mm/yyyy', 
-        todayHighlight: true,
-        autoclose: true,  
-        orientation: "bottom left" 
-    }).on('changeDate',function(e){ 
-        console.log('click sobre fecha_ini_enfermeria');
-        var fechaDesdeIni = $('#fecha_ini_enfermeria').val();
-    
-
-    });
-    */
     //fin datepickers
 
       $("#filtrar_fecha_act").on('click',function(e){
 
-        var f1 = $("#f1_fecha_nac").val();
-        var f2 = $("#f2_fecha_nac").val();
-        var f3 = $("#f3_nombre").val();
-
         $('#lista').DataTable().ajax.reload();//Ok, funciono sin recargar la pagina                    
-
-        /*const filtroData = new FormData();
-    
-        filtroData.append("startDate", f1);
-        filtroData.append("endDate", f2);
-
-        */
-
-
-      });
-      
-
-
-    $.getScript( "js_app/lista_datatable.js", function( data, textStatus, jqxhr ) {
-        /*console.log( data ); // Data returned
-        console.log( textStatus ); // Success
-        console.log( jqxhr.status ); // 200
-        console.log( "Load was performed." );*/
         
-    });
+      });
 
     /*
     Actualiza el datatables

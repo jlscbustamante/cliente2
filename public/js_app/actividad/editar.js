@@ -2,14 +2,11 @@ $(document).ready(function() {
 
     
         $("#editar_actividad").on('click',function(e){
-        //$("#editar_paciente").submit(function(e){
+
             e.preventDefault();
     
             console.log('Edit Activ');
-            //$("submit[name='nuevo_paciente']").prop('disabled', true);
             
-            //return false;
-    
             var id = document.getElementById('e_act_vid').value;
             var nombre = document.getElementById('e_act_nombre').value;
             var id_paciente = document.getElementById('e_pac_vid').value;
