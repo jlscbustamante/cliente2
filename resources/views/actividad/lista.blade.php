@@ -16,32 +16,30 @@
                 <form class="form-grid">
                     <label for="f1_act_created_at" class="col-md-2 control-label">Fecha desde</label>
                     <div class="form-group">
-                        <div class="input-group">                        
+                                         
+                        <div class="col-md-3">
                             <input id="f1_act_created_at" type="text" class="form-control" name="f1_act_created_at" value="01/10/2023" >
                             <input type="hidden" id="pac_vid" name="pac_vid" value=""/>
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
+                            
                         </div>
                       </div>
 
                       <label for="f2_act_created_at" class="col-md-2 control-label">Fecha hasta</label>
                       <div class="form-group">
-                        <div class="input-group">                        
-                            <input id="f2_act_created_at" type="text" class="form-control" name="f2_act_created_at" value="01/10/2023" >
-                            
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
+
+                        <div class="col-md-3">
+                            <div class="input-group">                        
+                                <input id="f2_act_created_at" type="text" class="form-control" name="f2_act_created_at" value="01/10/2023" >                               
                             </div>
                         </div>
                       </div>
 
-                    <div class="form-group">               
+                    <!-- <div class="form-group">               
                 
                         <div class="col-md-1">
                             <button type="button" class="btn btn-primary" id="filtrar_act_created_at" >Filtrar</button>            
                         </div>
-                    </div>
+                    </div> -->
         
                 </form>
             </div>

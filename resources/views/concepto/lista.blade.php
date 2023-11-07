@@ -17,7 +17,7 @@
                     <div class="form-group">               
         
                         <label for="f1_cpt_created_at" class="col-md-2 control-label">Fecha desde</label>
-                        <div class="col-md-3">                    
+                        <div class="col-md-3">
                             <input type="hidden" id="cpt_pac_vid" name="cpt_pac_vid" value=""/>
                             <input id="f1_cpt_created_at" type="text" class="form-control" name="f1_cpt_created_at" value="02/10/2023" >
         
